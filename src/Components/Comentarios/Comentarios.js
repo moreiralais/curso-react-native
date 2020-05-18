@@ -10,18 +10,14 @@ import {
 
 import estilo from "./estilo"
 
-const Comentarios = ({ comentarios }) => {
+const Comentarios = ({ comentarios, adicionarComentario }) => {
 
     const [estComentarios, setComentarios] = useState(comentarios)
 
-    const adicionarComentario = () => {
+    const comentar = () => {
         //console.warn(conteudoCampoInput)
         campoInput.clear()
-        const novoComentario = {
-            date: Date.now(),
-            text: conteudoCampoInput,
-            userName: "Lais"
-        }
+        const novoComentario = adicionarComentario(conteudoCampoInput, "Lais")
 
         setComentarios([...estComentarios, novoComentario])
     }
@@ -48,7 +44,7 @@ const Comentarios = ({ comentarios }) => {
                     placeholder={"Deixe seu comentário..."}
                     style={estilo.comentario}
                 />
-                <TouchableOpacity onPress={adicionarComentario}>
+                <TouchableOpacity onPress={comentar}>
                     <Image
                         source={require("../../../res/img/send.png")}
                         style={estilo.imgSend} />
